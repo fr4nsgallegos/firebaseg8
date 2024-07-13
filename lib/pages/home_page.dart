@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 usersReference
                     .where("nombre", isEqualTo: "Pedro")
-                    // .where("estatura", isGreaterThan: 175)
+                    .where("estatura", isGreaterThan: 175)
                     .get()
                     .then(
                   (value) {
@@ -82,7 +82,13 @@ class HomePage extends StatelessWidget {
                 );
               },
               child: Text("Actualización"),
-            )
+            ),
+            ElevatedButton(
+              onPressed: () {
+                usersReference.doc("idNoExiste").delete();
+              },
+              child: Text("Eliminar"),
+            ),
           ],
         ),
       ),
