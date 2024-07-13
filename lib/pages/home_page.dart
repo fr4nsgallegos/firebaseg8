@@ -8,14 +8,26 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        usersReference.get().then((value) {
-          QuerySnapshot userCollection = value;
-          print(value);
-        });
-      }),
       appBar: AppBar(
         title: Text("home"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+                onPressed: () {
+                  usersReference.get().then((value) {
+                    QuerySnapshot userCollection = value;
+                    List<QueryDocumentSnapshot> docs = userCollection.docs;
+                    docs.forEach((element) {
+                      print(element.id);
+                    });
+                  });
+                },
+                child: Text("Traer Data"))
+          ],
+        ),
       ),
     );
   }
